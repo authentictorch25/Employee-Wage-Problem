@@ -9,16 +9,15 @@ namespace EmployeeWageProblem
     {
         static void Main(string[] args)
         {
-            
 
-            EmpWageBuilderObject SapLabsWageBuilder = new EmpWageBuilderObject("Sap Labs", 200, 20, 100);
-            EmpWageBuilderObject DEShawWageBuilder = new EmpWageBuilderObject("DE Shaw", 250, 20, 70);
-            SapLabsWageBuilder.CalculateEmpWage();
-            DEShawWageBuilder.CalculateEmpWage();
-            SapLabsWageBuilder.GetDetails();
-            DEShawWageBuilder.GetDetails();
-            Console.ReadKey();
+
+            EmpWageBuilderObject wageBuilder = new EmpWageBuilderObject();
+            wageBuilder.AddCompanyEmpWage("Sap Labs", 200, 20, 100);
+            wageBuilder.AddCompanyEmpWage("DE Shaw", 250, 20, 70);
+            wageBuilder.ComputeEmpWage();
+            
         }
+    }
         ///
         // static void ComputeWage(string company, int wagePerHour, int numOfWorkingDays, int maxNoOfHrs)
 
@@ -71,7 +70,7 @@ namespace EmployeeWageProblem
          //               break;
         //            default:
        //                 break;
-                }
+              //  }
     /// <summary>
     /// 
     /// </summary>
