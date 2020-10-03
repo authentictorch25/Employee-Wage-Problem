@@ -6,12 +6,18 @@ namespace EmployeeWageProblem
     {
         static void Main(string[] args)
         {
+            ComputeWage();
+        }
+
+        static void ComputeWage()
+
+           { 
             Console.WriteLine("Welcome to Employee Wage Computation Program ");
             const int IS_PRESENT = 1;
             const int IS_ABSENT = 0;
             const int IS_PART_TIME = 0;
             const int IS_FULL_TIME = 1;
-            const int MAX_NO_OF_HOURS = 100;
+            
 
 
             int workingDays = 0;
@@ -38,11 +44,12 @@ namespace EmployeeWageProblem
                         if (empCheck == IS_PART_TIME)
                         {
                             dailyEmployeeWage = PartTimeWage();
+                            Console.WriteLine("The employee is present, part time");
                             workingDays++;
                         }
                         break;
                     case IS_ABSENT:
-                       // Console.WriteLine("The employee is absent, part time");
+                       // Console.WriteLine("The employee is absent");
                         break;
                 }
 
