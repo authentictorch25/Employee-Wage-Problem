@@ -41,7 +41,7 @@ namespace EmployeeWageProblem
             Random randObj = new Random();
             int empHours = 0, totalWorkingHoursCumulative = 0;
 
-            for (int currentDay = 1; currentDay <= cwdObj.numOfWorkingDays && totalWorkingHrsCumulative <= cwdObj.maxWorkingHrs; currentDay++)
+            for (int currentDay = 1; currentDay <= cwdObj.numOfWorkingDays && totalWorkingHoursCumulative <= cwdObj.maxWorkingHrs; currentDay++)
             {
                 int option = randObj.Next(0, 3);
                 switch (option)
