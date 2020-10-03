@@ -14,9 +14,9 @@ namespace EmployeeWageProblem
             CompanyWageDetailsList = new List<CompanyWageDetails>();
         }
 
-        public void AddCompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxWorkingHrs)
+        public void AddCompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxWorkingHours)
         {
-            CompanyWageDetails cwdObj = new CompanyWageDetails(company, empRatePerHour, numOfWorkingDays, maxWorkingHrs);
+            CompanyWageDetails cwdObj = new CompanyWageDetails(company, empRatePerHour, numOfWorkingDays, maxWorkingHours);
             CompanyWageDetailsList.Add(cwdObj);
         }
 
@@ -25,7 +25,8 @@ namespace EmployeeWageProblem
             foreach (CompanyWageDetails cwdObj in CompanyWageDetailsList)
             {
                 cwdObj.totalEmpWage = CalculateTotalEmployeeWage(cwdObj);
-                cwdObj.GetDetails();
+                cwdObj.GetDailyWageDetails();
+                cwdObj.GetTotalWageDetails();
             }
         }
 
@@ -36,12 +37,12 @@ namespace EmployeeWageProblem
             const int IS_FULL_TIME = 2;
 
             Console.WriteLine("*****************************************************");
-            Console.WriteLine("Wage Calculation for Employee of " + cwdObj.company);
+            Console.WriteLine("Wage Calculation for " + cwdObj.company + " Employee");
             Console.WriteLine("*****************************************************");
             Random randObj = new Random();
             int empHours = 0, totalWorkingHoursCumulative = 0;
 
-            for (int currentDay = 1; currentDay <= cwdObj.numOfWorkingDays && totalWorkingHrsCumulative <= cwdObj.maxWorkingHrs; currentDay++)
+            for (int currentDay = 1; currentDay <= cwdObj.numOfWorkingDays && totalWorkingHoursCumulative <= cwdObj.maxWorkingHours; currentDay++)
             {
                 int option = randObj.Next(0, 3);
                 switch (option)
@@ -58,10 +59,10 @@ namespace EmployeeWageProblem
                     default:
                         break;
                 }
-                if (totalWorkingHoursCumulative + empHours > cwdObj.maxWorkingHrs)
+                if (totalWorkingHoursCumulative + empHours > cwdObj.maxWorkingHours)
                     empHours = 0;
                 totalWorkingHoursCumulative += empHours;
-                Console.WriteLine("Day " + (currentDay) + " Employee Hours " + empHours);
+                cwdObj.dailyWageList.Add(empHours);
             }
             Console.WriteLine("Total Employee Hours " + totalWorkingHoursCumulative);
             return totalWorkingHoursCumulative * cwdObj.empRatePerHour;
@@ -69,4 +70,3 @@ namespace EmployeeWageProblem
 
     }
 }
-
