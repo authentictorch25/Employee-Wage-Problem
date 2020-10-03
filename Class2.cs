@@ -14,9 +14,9 @@ namespace EmployeeWageProblem
             CompanyWageDetailsList = new List<CompanyWageDetails>();
         }
 
-        public void AddCompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxWorkingHours)
+        public void AddCompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxWorkingHrs)
         {
-            CompanyWageDetails cwdObj = new CompanyWageDetails(company, empRatePerHour, numOfWorkingDays, maxWorkingHours);
+            CompanyWageDetails cwdObj = new CompanyWageDetails(company, empRatePerHour, numOfWorkingDays, maxWorkingHrs);
             CompanyWageDetailsList.Add(cwdObj);
         }
 
@@ -41,7 +41,7 @@ namespace EmployeeWageProblem
             Random randObj = new Random();
             int empHours = 0, totalWorkingHoursCumulative = 0;
 
-            for (int currentDay = 1; currentDay <= cwdObj.numOfWorkingDays && totalWorkingHoursCumulative <= cwdObj.maxWorkingHours; currentDay++)
+            for (int currentDay = 1; currentDay <= cwdObj.numOfWorkingDays && totalWorkingHrsCumulative <= cwdObj.maxWorkingHrs; currentDay++)
             {
                 int option = randObj.Next(0, 3);
                 switch (option)
@@ -58,7 +58,7 @@ namespace EmployeeWageProblem
                     default:
                         break;
                 }
-                if (totalWorkingHoursCumulative + empHours > cwdObj.maxWorkingHours)
+                if (totalWorkingHoursCumulative + empHours > cwdObj.maxWorkingHrs)
                     empHours = 0;
                 totalWorkingHoursCumulative += empHours;
                 Console.WriteLine("Day " + (currentDay) + " Employee Hours " + empHours);
