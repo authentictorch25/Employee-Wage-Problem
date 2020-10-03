@@ -6,13 +6,20 @@ namespace EmployeeWageProblem
     {
         static void Main(string[] args)
         {
-            ComputeWage();
+            Console.WriteLine("Welcome to Employee Wage Computation Program ");
+
+            ComputeWage("Dmart", 20, 20, 100 );
+
+            Console.WriteLine("                                             ");
+
+            ComputeWage("Reliance", 15, 25, 120);
+            Console.ReadKey();
         }
 
-        static void ComputeWage()
+        static void ComputeWage(string company, int wagePerHour, int numOfWorkingDays, int maxNoOfHrs)
 
-           { 
-            Console.WriteLine("Welcome to Employee Wage Computation Program ");
+         { 
+            
             const int IS_PRESENT = 1;
             const int IS_ABSENT = 0;
             const int IS_PART_TIME = 0;
@@ -22,34 +29,44 @@ namespace EmployeeWageProblem
 
             int workingDays = 0;
             int dailyEmployeeWage = 0;
-            int numOfWorkingDays = 20;
             int totalWage = 0;
             int workingHrs = 0;
-            
 
 
-            while(workingHrs <= 100 && workingDays <= 20 )
+            Console.WriteLine("This computation is for {0}", company);
+            while(workingHrs <= maxNoOfHrs && workingDays <= numOfWorkingDays )
             {
                 int attendance = Attendance();
                 int empCheck = EmpCheck();
                 switch (attendance)
                 {
                     case IS_PRESENT:
-                        Console.WriteLine("The employee is present, full time");
-                        if (empCheck == IS_FULL_TIME)
+                       
+                        switch(empCheck)
                         {
-                            dailyEmployeeWage = FullTimeWage();
+                             
+                        case IS_FULL_TIME:
+                         Console.WriteLine("The employee is present, full time on day {0}", workingDays);
+                         dailyEmployeeWage = wagePerHour*8;
+                          workingDays++;
+                                break;
+
+
+                            case IS_PART_TIME:
+                        
+                            dailyEmployeeWage = wagePerHour*4;
+                            Console.WriteLine("The employee is present, part time on day {0}", workingDays);
                             workingDays++;
-                        }
-                        if (empCheck == IS_PART_TIME)
-                        {
-                            dailyEmployeeWage = PartTimeWage();
-                            Console.WriteLine("The employee is present, part time");
-                            workingDays++;
+                                break;
+                            default:
+                                break;
                         }
                         break;
                     case IS_ABSENT:
+                       
                        // Console.WriteLine("The employee is absent");
+                        break;
+                    default:
                         break;
                 }
 
@@ -61,7 +78,7 @@ namespace EmployeeWageProblem
             
             
             
-            Console.ReadKey();
+            
         }
         static int Attendance()
         {
@@ -70,20 +87,10 @@ namespace EmployeeWageProblem
         }
         static int EmpCheck()
         {
+
             Random random = new Random();
             return random.Next(0, 2);
         }
-        static int FullTimeWage()
-        {
-            int numOfHrs = 8;
-            int wagePerHour = 20;
-            return numOfHrs * wagePerHour;
-        }
-        static int PartTimeWage()
-        {
-            int numOfHrs = 4;
-            int wagePerHour = 20;
-            return numOfHrs * wagePerHour;
-        }
+       
     }
 }
