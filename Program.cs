@@ -8,34 +8,31 @@ namespace EmployeeWageProblem
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program ");
             const int IS_PRESENT = 1;
+            const int IS_ABSENT = 0;
             const int IS_PART_TIME = 0;
             const int IS_FULL_TIME = 1;
             int attendance = Attendance();
             int empCheck = EmpCheck();
             int dailyEmployeeWage = 0;
-            int partTimeWage = 0;
-
-           
-            if (empCheck == IS_FULL_TIME && attendance == IS_PRESENT)
+            
+            switch(attendance)
             {
-                dailyEmployeeWage = FullTimeWage();
-                Console.WriteLine("The employee is present");
-                Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
-
+                case IS_PRESENT:
+                    Console.WriteLine("The employee is present");
+                    if(empCheck == IS_FULL_TIME) 
+                    {
+                        dailyEmployeeWage = FullTimeWage();
+                    }
+                    if(empCheck == IS_PART_TIME)
+                    {
+                        dailyEmployeeWage = PartTimeWage();
+                    }
+                    break;
+                case IS_ABSENT:
+                    Console.WriteLine("The employee is absent");
+                    break;
             }
-            else if (empCheck == IS_PART_TIME && attendance == IS_PRESENT)
-            {
-                dailyEmployeeWage = PartTimeWage();
-                Console.WriteLine("The employee is present");
-                Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
-            }
-
-            else
-            {
-                Console.WriteLine("The employee is absent");
-                Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
-            }
-
+            Console.WriteLine("The daily wage of employee is "+ dailyEmployeeWage);
             
             
             
