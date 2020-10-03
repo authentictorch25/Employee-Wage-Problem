@@ -11,28 +11,38 @@ namespace EmployeeWageProblem
             const int IS_ABSENT = 0;
             const int IS_PART_TIME = 0;
             const int IS_FULL_TIME = 1;
-            int attendance = Attendance();
-            int empCheck = EmpCheck();
+           
+           
             int dailyEmployeeWage = 0;
-            
-            switch(attendance)
+            int numOfWorkingDays = 20;
+            int totalWage = 0;
+
+
+            for (int i = 0; i < numOfWorkingDays; i++)
             {
-                case IS_PRESENT:
-                    Console.WriteLine("The employee is present");
-                    if(empCheck == IS_FULL_TIME) 
-                    {
-                        dailyEmployeeWage = FullTimeWage();
-                    }
-                    if(empCheck == IS_PART_TIME)
-                    {
-                        dailyEmployeeWage = PartTimeWage();
-                    }
-                    break;
-                case IS_ABSENT:
-                    Console.WriteLine("The employee is absent");
-                    break;
+                int attendance = Attendance();
+                int empCheck = EmpCheck();
+                switch (attendance)
+                {
+                    case IS_PRESENT:
+                        Console.WriteLine("The employee is present, full time");
+                        if (empCheck == IS_FULL_TIME)
+                        {
+                            dailyEmployeeWage = FullTimeWage();
+                        }
+                        if (empCheck == IS_PART_TIME)
+                        {
+                            dailyEmployeeWage = PartTimeWage();
+                        }
+                        break;
+                    case IS_ABSENT:
+                        Console.WriteLine("The employee is absent, part time");
+                        break;
+                }
+                totalWage = totalWage + dailyEmployeeWage;
+
             }
-            Console.WriteLine("The daily wage of employee is "+ dailyEmployeeWage);
+            Console.WriteLine("The total wage of employee for the month is "+ totalWage);
             
             
             
