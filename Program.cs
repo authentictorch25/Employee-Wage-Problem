@@ -17,12 +17,25 @@ namespace EmployeeWageProblem
             {
                 Console.WriteLine("Employee is absent");
             }
+
+            int dailyEmployeeWage = 0;
+            if(attendance == IS_PRESENT)
+            {
+                dailyEmployeeWage = DailyEmployeeWage();
+            }
+            Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
             Console.ReadKey();
         }
         static int Attendance()
         {
             Random random = new Random();
             return random.Next(0, 2);
+        }
+        static int DailyEmployeeWage()
+        {
+            int numOfHrs = 8;
+            int wagePerHour = 20;
+            return numOfHrs * wagePerHour;
         }
     }
 }
