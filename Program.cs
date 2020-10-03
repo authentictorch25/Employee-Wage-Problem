@@ -8,22 +8,37 @@ namespace EmployeeWageProblem
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program ");
             const int IS_PRESENT = 1;
+            const int IS_PART_TIME = 0;
+            const int IS_FULL_TIME = 1;
             int attendance = Attendance();
-            if (attendance == IS_PRESENT)
+            int empCheck = EmpCheck();
+            int dailyEmployeeWage = 0;
+            int partTimeWage = 0;
+
+           
+            if (empCheck == IS_FULL_TIME && attendance == IS_PRESENT)
             {
-                Console.WriteLine("Employee is present");
+                dailyEmployeeWage = FullTimeWage();
+                Console.WriteLine("The employee is present");
+                Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
+
             }
-            else
+            else if (empCheck == IS_PART_TIME && attendance == IS_PRESENT)
             {
-                Console.WriteLine("Employee is absent");
+                dailyEmployeeWage = PartTimeWage();
+                Console.WriteLine("The employee is present");
+                Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
             }
 
-            int dailyEmployeeWage = 0;
-            if(attendance == IS_PRESENT)
+            else
             {
-                dailyEmployeeWage = DailyEmployeeWage();
+                Console.WriteLine("The employee is absent");
+                Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
             }
-            Console.WriteLine("The daily employee wage : " + dailyEmployeeWage);
+
+            
+            
+            
             Console.ReadKey();
         }
         static int Attendance()
@@ -31,9 +46,20 @@ namespace EmployeeWageProblem
             Random random = new Random();
             return random.Next(0, 2);
         }
-        static int DailyEmployeeWage()
+        static int EmpCheck()
+        {
+            Random random = new Random();
+            return random.Next(0, 2);
+        }
+        static int FullTimeWage()
         {
             int numOfHrs = 8;
+            int wagePerHour = 20;
+            return numOfHrs * wagePerHour;
+        }
+        static int PartTimeWage()
+        {
+            int numOfHrs = 4;
             int wagePerHour = 20;
             return numOfHrs * wagePerHour;
         }
