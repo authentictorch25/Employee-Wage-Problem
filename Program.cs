@@ -11,14 +11,18 @@ namespace EmployeeWageProblem
             const int IS_ABSENT = 0;
             const int IS_PART_TIME = 0;
             const int IS_FULL_TIME = 1;
-           
-           
+            const int MAX_NO_OF_HOURS = 100;
+
+
+            int workingDays = 0;
             int dailyEmployeeWage = 0;
             int numOfWorkingDays = 20;
             int totalWage = 0;
+            int workingHrs = 0;
+            
 
 
-            for (int i = 0; i < numOfWorkingDays; i++)
+            while(workingHrs <= 100 && workingDays <= 20 )
             {
                 int attendance = Attendance();
                 int empCheck = EmpCheck();
@@ -29,16 +33,20 @@ namespace EmployeeWageProblem
                         if (empCheck == IS_FULL_TIME)
                         {
                             dailyEmployeeWage = FullTimeWage();
+                            workingDays++;
                         }
                         if (empCheck == IS_PART_TIME)
                         {
                             dailyEmployeeWage = PartTimeWage();
+                            workingDays++;
                         }
                         break;
                     case IS_ABSENT:
-                        Console.WriteLine("The employee is absent, part time");
+                       // Console.WriteLine("The employee is absent, part time");
                         break;
                 }
+
+                
                 totalWage = totalWage + dailyEmployeeWage;
 
             }
